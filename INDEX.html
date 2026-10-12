@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Website pengingat tugas dan deadline.">
+  <title>IngatTugas — Pengingat Tugas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <a class="brand" href="#">
+      <span class="brand-mark">✓</span>
+      <span>Ingat<span class="brand-accent">Tugas</span></span>
+    </a>
+
+    <p class="side-label">MENU</p>
+    <button class="nav-item active" data-filter="all">▦ Semua Tugas <span id="allCount">0</span></button>
+    <button class="nav-item" data-filter="today">◷ Hari Ini <span id="todayCount">0</span></button>
+    <button class="nav-item" data-filter="upcoming">▤ Akan Datang</button>
+    <button class="nav-item" data-filter="done">✓ Selesai</button>
+
+    <p class="side-label category-label">KATEGORI</p>
+    <button class="nav-item" data-category="Kuliah">🟣 Kuliah</button>
+    <button class="nav-item" data-category="Organisasi">🟠 Organisasi</button>
+    <button class="nav-item" data-category="Pribadi">🟢 Pribadi</button>
+
+    <div class="sidebar-bottom">
+      <div class="mini-tip">
+        💡 <strong>Tips produktif</strong>
+        <p>Kerjakan tugas penting lebih dulu, lalu pecah tugas besar menjadi langkah kecil.</p>
+      </div>
+      <div class="profile">
+        <div class="avatar">👤</div>
+        <div><strong>Ruang Produktif</strong><small>Pengelola tugas</small></div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="welcome">
+        <span class="eyebrow">RUANG PRODUKTIF KAMU</span>
+        <h1>Halo, semangat ya! 👋</h1>
+        <p>Atur tugas, ingat deadline, dan selesaikan satu per satu.</p>
+      </div>
+
+      <div class="top-actions">
+        <label class="search">
+          <span>⌕</span>
+          <input id="searchInput" type="search" placeholder="Cari tugas...">
+        </label>
+        <button class="primary-btn" id="addTaskTop">＋ Tambah Tugas</button>
+      </div>
+    </header>
+
+    <section class="stats">
+      <article class="stat-card">
+        <div class="stat-icon violet">▦</div>
+        <div><span>Total tugas aktif</span><strong id="statTotal">0</strong><small id="statTotalNote">Semua masih bisa dikejar</small></div>
+      </article>
+      <article class="stat-card">
+        <div class="stat-icon amber">◷</div>
+        <div><span>Deadline hari ini</span><strong id="statToday">0</strong><small>Jangan sampai terlewat</small></div>
+      </article>
+      <article class="stat-card">
+        <div class="stat-icon mint">✓</div>
+        <div><span>Tugas selesai</span><strong id="statDone">0</strong><small id="donePercent">Sedikit demi sedikit</small></div>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <div class="task-panel">
+        <div class="section-heading">
+          <div>
+            <h2 id="listTitle">Daftar Tugas</h2>
+            <p>Catat semua hal yang perlu kamu selesaikan.</p>
+          </div>
+          <button class="filter-button" id="sortButton">↕ Deadline terdekat</button>
+        </div>
+
+        <div class="quick-filters">
+          <button class="pill active" data-priority="all">Semua prioritas</button>
+          <button class="pill" data-priority="Tinggi">🔴 Tinggi</button>
+          <button class="pill" data-priority="Sedang">🟠 Sedang</button>
+          <button class="pill" data-priority="Rendah">🟢 Rendah</button>
+        </div>
+
+        <div id="taskList" class="task-list"></div>
+
+        <div id="emptyState" class="empty-state" hidden>
+          <h3>Belum ada tugas di sini</h3>
+          <p>Tambahkan tugas baru supaya semua rencanamu tercatat rapi.</p>
+          <button class="primary-btn" id="emptyAdd">＋ Tambah Tugas</button>
+        </div>
+      </div>
+
+      <aside class="right-column">
+        <section class="calendar-card">
+          <div class="section-heading compact">
+            <div><h2>Agenda</h2><p id="todayDate"></p></div>
+            <span class="calendar-symbol">▦</span>
+          </div>
+          <div id="agendaList" class="agenda-list"></div>
+        </section>
+
+        <section class="progress-card">
+          <div class="section-heading compact">
+            <div><h2>Progress kamu</h2><p>Terus bergerak maju!</p></div>
+            <span>🎯</span>
+          </div>
+          <div class="progress-number">
+            <strong id="progressText">0%</strong>
+            <span>tugas selesai</span>
+          </div>
+          <div class="progress-track"><div id="progressBar"></div></div>
+          <div class="progress-foot">
+            <span id="progressDone">0 selesai</span>
+            <span id="progressRemaining">0 tersisa</span>
+          </div>
+        </section>
+
+        <section class="quote-card">
+          <span class="quote-mark">“</span>
+          <p>Produktif bukan berarti melakukan semuanya sekaligus, tetapi tahu apa yang perlu dilakukan lebih dulu.</p>
+          <small>— Catatan hari ini</small>
+        </section>
+      </aside>
+    </section>
+
+    <footer>IngatTugas • Semua tugas tersimpan di browser perangkat ini.</footer>
+  </main>
+
+  <dialog id="taskDialog">
+    <form id="taskForm">
+      <div class="dialog-head">
+        <div>
+          <span class="eyebrow">CATAT RENCANAMU</span>
+          <h2 id="dialogTitle">Tambah Tugas Baru</h2>
+        </div>
+        <button type="button" class="close-btn" id="closeDialog">×</button>
+      </div>
+
+      <input type="hidden" id="taskId">
+
+      <label class="field-label" for="taskTitle">Nama tugas *</label>
+      <input class="field" id="taskTitle" required maxlength="100" placeholder="Contoh: Kerjakan laporan kelompok">
+
+      <label class="field-label" for="taskDescription">Catatan (opsional)</label>
+      <textarea class="field" id="taskDescription" rows="3" placeholder="Detail tugas atau hal yang perlu diingat..."></textarea>
+
+      <div class="form-row">
+        <div>
+          <label class="field-label" for="taskCategory">Kategori</label>
+          <select class="field" id="taskCategory">
+            <option>Kuliah</option><option>Organisasi</option><option>Pribadi</option>
+          </select>
+        </div>
+        <div>
+          <label class="field-label" for="taskPriority">Prioritas</label>
+          <select class="field" id="taskPriority">
+            <option>Tinggi</option><option selected>Sedang</option><option>Rendah</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div>
+          <label class="field-label" for="taskDate">Deadline *</label>
+          <input class="field" id="taskDate" type="date" required>
+        </div>
+        <div>
+          <label class="field-label" for="taskTime">Jam (opsional)</label>
+          <input class="field" id="taskTime" type="time">
+        </div>
+      </div>
+
+      <div class="dialog-actions">
+        <button type="button" class="secondary-btn" id="cancelDialog">Batal</button>
+        <button type="submit" class="primary-btn">Simpan Tugas</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status"></div>
+  <script src="app.js"></script>
+</body>
+</html>
