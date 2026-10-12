@@ -64,7 +64,7 @@ Selain itu, proyek ini menjadi sarana pembelajaran dalam membangun website inter
 
 **IngatTugas — Pengingat Tugas**
 
-Dikembangkan sebagai proyek pembelajaran pengembangan web.
+Dikembangkan oleh kelompok 1 kelas 2025D.
 
 ## 📄 Lisensi
 
