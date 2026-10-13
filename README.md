@@ -24,7 +24,7 @@ Dengan tampilan yang sederhana dan modern, pengguna dapat mencatat deadline, men
 ## Teknologi yang Digunakan
 
 - **HTML5** — Membuat struktur dan elemen halaman website.
-- **CSS3** — Mengatur tampilan, warna, layout, animasi sederhana, dan responsivitas website.
+- **CSS** — Mengatur tampilan, warna, layout, animasi sederhana, dan responsivitas website.
 - **JavaScript** — Mengatur interaksi pengguna, pengelolaan tugas, filter, pencarian, statistik, dan penyimpanan data.
 - **GitHub** — Menyimpan kode sumber dan mengelola repository proyek.
 - **GitHub Pages** — Memublikasikan website agar dapat diakses secara online.
@@ -38,16 +38,6 @@ ingat-tugas-web/
 ├── app.js
 └── README.md
 ```
-
-## Cara Menjalankan Website
-
-1. Clone atau download repository ini.
-2. Pastikan file `index.html`, `style.css`, dan `app.js` berada dalam folder yang sama.
-3. Buka file `index.html` menggunakan browser seperti Google Chrome.
-4. Website siap digunakan untuk mencatat dan mengelola tugas.
-
-Website juga dapat dipublikasikan menggunakan GitHub Pages agar dapat diakses melalui tautan online.
-
 ## Penyimpanan Data
 
 Website menggunakan `localStorage` untuk menyimpan data tugas pada browser. Data tetap tersedia ketika halaman dibuka kembali pada browser dan perangkat yang sama, selama penyimpanan browser tidak dihapus.
